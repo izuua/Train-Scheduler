@@ -24,16 +24,37 @@ $(".btn").on("click", function (event) {
 })
 database.ref().on("child_added", function (childSnapshot) {
 
+    // First Time (pushed back 1 year to make sure it comes before current time)
+    var firstTimeConverted = moment(childSnapshot.val().time, "HH:mm").subtract(1, "years");
+
+    // Difference between the times
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    // Time apart (remainder)
+    var tRemainder = diffTime % childSnapshot.val().frequency;
+    console.log(tRemainder);
+
+    // Minute Until Train
+    var tMinutesTillTrain = childSnapshot.val().frequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    // Next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
+
     var newRow = $("<tr>").append(
         $("<td>").text(childSnapshot.val().train),
         $("<td>").text(childSnapshot.val().destination),
         $("<td>").text(childSnapshot.val().frequency),
-        // $("<td>").text(), //place holder for next arrival time
-        // $("<td>").text(), //place holder for minutes away
+        $("<td>").text(moment(nextTrain).format("hh:mm")),
+        $("<td>").text(tMinutesTillTrain),
     )
+
+    
 
     $("#train-info").append(newRow);
 
 })
 
-//need to add logic to calculate next arrival time and minutes away
