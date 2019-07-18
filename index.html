@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <title>Train Scheduler</title>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class=col-12>
+                <div class="container">
+                    <div class="jumbotron jumbotron-fluid">
+                        <div class="container">
+                            <h1 class="display-4">Train Schedule</h1>
+                            <!-- <p class="lead">Choo Choo!!!</p> -->
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            Current Train Schedule
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Train Name</th>
+                                    <th scope="col">Destination</th>
+                                    <th scope="col">Frequency (min)</th>
+                                    <th scope="col">Next Arrival</th>
+                                    <th scope="col">Minutes Away</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employee-info">
+                                <tr>
+                                    <th scope="row">Trenton Express</th>
+                                    <td>Trenton</td>
+                                    <td>25</td>
+                                    <td>5:35</td>
+                                    <td>10</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="card">
+                        <div class="card-header">
+                            Add Train
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label>Train Name</label>
+                                <input type="text" class="form-control" id="input-train" placeholder="Enter Train Name">
+                            </div>
+                            <div class="form-group">
+                                <label>Destination</label>
+                                <input type="text" class="form-control" id="input-destination" placeholder="Enter Destination">
+                            </div>
+                            <div class="form-group">
+                                <label>First Train Time</label>
+                                <input type="time" class="form-control" id="input-time"
+                                    placeholder="Enter First Train Time">
+                            </div>
+                            <div class="form-group">
+                                <label>Frequency (min)</label>
+                                <input type="number" class="form-control" id="input-frequency" placeholder="Enter Frequency">
+                            </div>
+                            <div class="form-group form-check">
+                                <button type="button" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="./assets/logic.js"></script>
+</body>
+</html>
