@@ -1,4 +1,3 @@
-
 var firebaseConfig = {
     apiKey: "AIzaSyCBqNaNIbkiYBdnuPX6OhudWh-iI9agn44",
     authDomain: "click-button-b99e3.firebaseapp.com",
@@ -20,7 +19,6 @@ $(".btn").on("click", function (event) {
         frequency: $("#input-frequency").val().trim(),
     }
     database.ref().push(train);
-    console.log(train);
 })
 database.ref().on("child_added", function (childSnapshot) {
 
@@ -29,19 +27,15 @@ database.ref().on("child_added", function (childSnapshot) {
 
     // Difference between the times
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    console.log("DIFFERENCE IN TIME: " + diffTime);
 
     // Time apart (remainder)
     var tRemainder = diffTime % childSnapshot.val().frequency;
-    console.log(tRemainder);
 
     // Minute Until Train
     var tMinutesTillTrain = childSnapshot.val().frequency - tRemainder;
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
 
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
 
     var newRow = $("<tr>").append(
@@ -51,8 +45,6 @@ database.ref().on("child_added", function (childSnapshot) {
         $("<td>").text(moment(nextTrain).format("hh:mm")),
         $("<td>").text(tMinutesTillTrain),
     )
-
-    
 
     $("#train-info").append(newRow);
 
