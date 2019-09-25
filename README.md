@@ -1,5 +1,5 @@
-# Train-Scheduler
-An app that displays a train schedule.
+# Train Scheduler
+An app that displays train schedules.
 
 # Instructions
 1. Add train name.
